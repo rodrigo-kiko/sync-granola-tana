@@ -160,6 +160,22 @@ Formato Tana Paste:
 - **SEMPRE incluir link Granola como ultimo filho de Summary**: `Chat with meeting transcript: https://notes.granola.ai/t/{meeting-id}`
   - Este link e essencial para o matching de duplicatas em futuras sincronizacoes!
 
+**REGRAS CRITICAS DE FIDELIDADE DO CONTEUDO**:
+
+1. **Preservar acentuacao e caracteres especiais**: O conteudo do summary do Granola DEVE ser importado com o texto original intacto, incluindo acentos (á, é, í, ó, ú, ã, õ, ç, â, ê), cedilhas e quaisquer caracteres Unicode. NUNCA remover ou normalizar acentos. O Tana suporta Unicode perfeitamente.
+   - Correto: "Análise do padrão de rigidez metodológica"
+   - ERRADO: "Analise do padrao de rigidez metodologica"
+
+2. **Importar TODOS os bullets sem excecao**: NAO fazer curadoria, resumo, selecao ou omissao de bullets. Cada bullet point presente no summary do Granola DEVE ter um node correspondente no Tana Paste. A funcao do skill e transferir fielmente, nao resumir ou editar.
+   - Se o Granola tem 20 bullets sob uma secao, o Tana deve receber 20 nodes
+   - NAO pular bullets que parecam redundantes ou menos importantes
+
+3. **Preservar texto integral de cada bullet**: Copiar o texto completo de cada bullet, sem cortar prefixos, labels ou partes do conteudo. Se um bullet comeca com "Foco:", "Tema:", "Expectativas:" ou qualquer outro prefixo, esse prefixo FAZ PARTE do conteudo e deve ser mantido.
+   - Correto: "**Foco:** Reconhecimento do método como mecanismo de proteção"
+   - ERRADO: "Reconhecimento do metodo como mecanismo de protecao" (cortou "Foco:" e removeu acentos)
+
+4. **Preservar hierarquia completa**: Se o Granola tem sub-bullets agrupados sob um bullet pai intermediario (ex: "Fatos da semana:" com sub-items), manter essa hierarquia no Tana Paste com a indentacao correta. NAO achatar a hierarquia.
+
 O `parentNodeId` de destino e o Daily Page obtido na Fase 3.
 
 Ver `references/tana-paste-format.md` para detalhes da sintaxe.

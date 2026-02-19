@@ -114,6 +114,36 @@ Some paragraph text about the meeting.
 9. Remove empty lines (don't create empty nodes)
 10. Collapse multiple consecutive empty sections
 
+### CRITICAL: Content fidelity rules
+
+These rules override any tendency to summarize, curate, or simplify content:
+
+**Rule 1 - Preserve all Unicode characters (accents, cedillas, special chars)**:
+- The Granola summary contains text in the original language with proper accents
+- NEVER strip or normalize accents (á, é, í, ó, ú, ã, õ, ç, â, ê, etc.)
+- Tana fully supports Unicode — pass the text through as-is
+- Example: "Análise do padrão de rigidez" must stay exactly as-is
+- WRONG: "Analise do padrao de rigidez" (accents stripped)
+
+**Rule 2 - Import ALL bullets with zero omissions**:
+- Every single bullet in the Granola summary MUST appear in the Tana Paste output
+- Do NOT curate, select, summarize, or skip any bullets
+- Do NOT decide that certain bullets are "less important" or "redundant"
+- If Granola has 30 bullets under a section, Tana gets 30 nodes
+- The skill's job is FAITHFUL TRANSFER, not editorial curation
+
+**Rule 3 - Preserve full text of each bullet (no truncation)**:
+- Copy the complete text of each bullet, including any prefix labels
+- If a bullet starts with "Foco:", "Tema:", "Expectativas:", etc., keep those prefixes
+- Do NOT treat label prefixes as metadata to extract — they are part of the content
+- Example: "**Foco:** Reconhecimento do método como proteção" → keep exactly as-is
+- WRONG: "Reconhecimento do metodo como protecao" (prefix removed + accents stripped)
+
+**Rule 4 - Preserve full hierarchy (no flattening)**:
+- If Granola has a bullet "Fatos da semana:" with sub-bullets underneath, maintain that hierarchy
+- Do NOT flatten nested structures into a single level
+- The indentation in Tana Paste (2 spaces per level) must reflect the original nesting
+
 ### Participant extraction
 
 From Granola `known_participants`:
